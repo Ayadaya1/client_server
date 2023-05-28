@@ -1,0 +1,3 @@
+C:\Users\Филипп лох\source\repos\Client\x64\Debug\Client.exe
+C:\Users\Филипп лох\source\repos\SisPO_Laba1\Client\x64\Debug\Client.exe
+C:\Users\sword\Desktop\Modbus-TCP-main\Client\x64\Debug\Client.exe
