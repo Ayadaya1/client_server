@@ -141,64 +141,21 @@ int main() {
                 logs[i].write(ofs1);
             }
             std::stringstream s;
-            s << pack.Data;
-            char temp[10];
-            s >> temp;
-            int y = atoi(temp);
-            s >> temp;
-            int m = atoi(temp);
-            s >> temp;
-            int d = atoi(temp);
-            std::vector<Note> found;
-            for (int i = 0; i < notes.size(); i++)
-            {
-                if (notes[i].date.year == y && notes[i].date.month == m && notes[i].date.day == d)
-                {
-                    found.push_back(notes[i]);
-                }
-            }
-            int n = found.size();
-            char nChar[10];
-            _itoa(n, nChar, 10);
-            strcpy(pack.Data, nChar);
-            send(clntSock, pack.Serialize(), 260, NULL);
-            for (int i = 0; i < n; i++)
-            {
-                char ymd[252] = { 0 };
-                char data[252] = { 0 };
-                _itoa(found[i].date.year, ymd, 10);
-                strcpy(data, ymd);
-                strcat(data, " ");
-                _itoa(found[i].date.month, ymd, 10);
-                strcat(data, ymd);
-                strcat(data, " ");
-                _itoa(found[i].date.day, ymd, 10);
-                strcat(data, ymd);
-                strcat(data, " ");
-                strcat(data, found[i].note);
-                strcpy(pack.Data, data);
-                std::cout << pack.Data << std::endl;
-                send(clntSock, pack.Serialize(), 260, NULL);
-            }if (n != 0)
-            {
-                recv(clntSock, szBuffer, 260, NULL);
+            
                 pack.Deserialize(szBuffer);
                 int num = atoi(pack.Data);
                 char message[30];
-                if (num == 0)
-                {
-                    strcpy(message, "Отменено успешно!");
-                }
-                else if (num > n)
+
+                if (num > notes.size())
                 {
                     strcpy(message, "Ошибка!");
                 }
                 else
                 {
                     strcpy(message, "Удаление успешно!");
-                    auto it = std::remove(notes.begin(), notes.end(), found.at(num - 1));
+                    auto it = std::remove(notes.begin(), notes.end(), notes.at(num - 1));
                     std::cout << (*it).note;
-                    notes.erase(std::remove(notes.begin(), notes.end(), found.at(num - 1)), notes.end());
+                    notes.erase(notes.begin() + num - 1);
                     std::ofstream ofs(filename, std::ios::binary | std::ios::out);
                     for (int i = 0; i < notes.size(); i++)
                     {
@@ -207,7 +164,7 @@ int main() {
                 }
                 strcpy(pack.Data, message);
                 send(clntSock, pack.Serialize(), 260, NULL);
-            }
+           
             break;
         }
         case 68:
@@ -219,58 +176,10 @@ int main() {
             {
                 logs[i].write(ofs1);
             }
-            std::stringstream s;
-            s << pack.Data;
-            char temp[10];
-            s >> temp;
-            int y = atoi(temp);
-            s >> temp;
-            int m = atoi(temp);
-            s >> temp;
-            int d = atoi(temp);
-            std::vector<Note> found;
-            for (int i = 0; i < notes.size(); i++)
-            {
-                if (notes[i].date.year == y && notes[i].date.month == m && notes[i].date.day == d)
-                {
-                    found.push_back(notes[i]);
-                }
-            }
-            int n = found.size();
-            char nChar[10];
-            _itoa(n, nChar, 10);
-            strcpy(pack.Data, nChar);
-            send(clntSock, pack.Serialize(), 260, NULL);
-            for (int i = 0; i < n; i++)
-            {
-                char ymd[252] = { 0 };
-                char data[252] = { 0 };
-                _itoa(found[i].date.year, ymd, 10);
-                strcpy(data, ymd);
-                strcat(data, " ");
-                _itoa(found[i].date.month, ymd, 10);
-                strcat(data, ymd);
-                strcat(data, " ");
-                _itoa(found[i].date.day, ymd, 10);
-                strcat(data, ymd);
-                strcat(data, " ");
-                strcat(data, found[i].note);
-                strcpy(pack.Data, data);
-                std::cout << pack.Data << std::endl;
-                send(clntSock, pack.Serialize(), 260, NULL);
-            }
-            if (n != 0)
-            {
-                recv(clntSock, szBuffer, 260, NULL);
-                pack.Deserialize(szBuffer);
                 int num = atoi(pack.Data);
                 std::cout << num << std::endl;
                 char message[30];
-                if (num == 0)
-                {
-                    strcpy(message, "Отменено успешно!");
-                }
-                else if (num > n)
+                if (num > notes.size())
                 {
                     strcpy(message, "Ошибка!");
                 }
@@ -282,7 +191,7 @@ int main() {
                 send(clntSock, pack.Serialize(), 260, NULL);
                 recv(clntSock, szBuffer, 260, NULL);
                 pack.Deserialize(szBuffer);
-                auto it = std::find(notes.begin(), notes.end(), found.at(num - 1));
+                auto it = notes.begin()+num-1;
                 if (it != notes.end())
                 {
                     strcpy(it->note, pack.Data);
@@ -292,8 +201,7 @@ int main() {
                 {
                     notes[i].write(ofs);
                 }
-            }
-            break;
+                break;
         }
 
         case 69:

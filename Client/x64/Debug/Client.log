@@ -1,5 +1,1 @@
-﻿  Client.cpp
-C:\Users\sword\Desktop\Modbus-TCP-main\Client\Client.cpp : warning C5210: "_WINSOCK_DEPRECATED_NO_WARNINGS" не является допустимой ссылкой на блок заголовка; пропускается
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winbase.h(9531,5): warning C5105: Поведение расширения макроса, создающего "defined", не определено
-C:\Users\sword\Desktop\Modbus-TCP-main\Client\Client.cpp(25,9): warning C4101: nSize: неиспользованная локальная переменная
-  Client.vcxproj -> C:\Users\sword\Desktop\Modbus-TCP-main\Client\x64\Debug\Client.exe
+﻿  Client.vcxproj -> C:\Users\sword\Desktop\Курсач клиент-сервер\Client\x64\Debug\Client.exe

@@ -120,64 +120,7 @@ int main()
         }
         case '3':
         {
-            char fc = 67;
-            int y;
-            int m;
-            int d;
-            std::cout << "Введите год: ";
-            std::cin >> y;
-            std::cout << "Введите месяц(1-12): ";
-            std::cin >> m;
-            std::cout << "Введите день: ";
-            std::cin >> d;
-            char ymd[252] = { 0 };
-            _itoa(y, ymd, 10);
-            strcpy(data, ymd);
-            strcat(data, " ");
-            _itoa(m, ymd, 10);
-            strcat(data, ymd);
-            strcat(data, " ");
-            _itoa(d, ymd, 10);
-            strcat(data, ymd);
-            Packet pack(fc, data);
-            send(sock, pack.Serialize(), 260, NULL);
-            system("cls");
-            std::cout << "Отправлен пакет: " << std::endl << std::endl;
-            pack.Print();
-            system("pause");
-            system("cls");
-            recv(sock, szBuffer, 260, NULL);
-            pack.Deserialize(szBuffer);
-            int n;
-            n = atoi(pack.Data);
-
-            if (n == 0)
-            {
-                std::cout << "Заметок не найдено!" << std::endl;
-            }
-            else {
-                for (int i = 0; i < n; i++)
-                {
-
-                    recv(sock, szBuffer, 260, NULL);
-                    pack.Deserialize(szBuffer);
-                    std::stringstream s;
-                    s << pack.Data;
-                    Note note(s);
-                    std::cout << i + 1 << ")" << (int)note.date.day << "." << (int)note.date.month << "." << (int)note.date.year << ": " << note.note << std::endl;
-                }
-
-                std::cout << "Выберите запись для удаления или нажмите 0, чтобы ничего не удалять: ";
-                int choice;
-                std::cin >> choice;
-                char ch[5];
-                _itoa(choice, ch, 10);
-                strcpy(pack.Data, ch);
-                send(sock, pack.Serialize(), 260, NULL);
-                recv(sock, szBuffer, 260, NULL);
-                pack.Deserialize(szBuffer);
-                std::cout << pack.Data << std::endl;
-            }
+             
             system("pause");
             break;
         }

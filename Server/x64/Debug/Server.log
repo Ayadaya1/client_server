@@ -1,7 +1,5 @@
 ﻿  Server.cpp
-C:\Users\sword\Desktop\Modbus-TCP-main\Server\Server.cpp(109,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\sword\Desktop\Modbus-TCP-main\Server\Server.cpp(160,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\sword\Desktop\Modbus-TCP-main\Server\Server.cpp(239,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\sword\Desktop\Modbus-TCP-main\Server\Server.cpp(308,32): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\sword\Desktop\Modbus-TCP-main\Server\Server.cpp(328,65): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  Server.vcxproj -> C:\Users\sword\Desktop\Modbus-TCP-main\Server\x64\Debug\Server.exe
+C:\Users\sword\Desktop\Курсач клиент-сервер\Server\Server.cpp(109,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\sword\Desktop\Курсач клиент-сервер\Server\Server.cpp(216,32): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\sword\Desktop\Курсач клиент-сервер\Server\Server.cpp(236,65): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Server.vcxproj -> C:\Users\sword\Desktop\Курсач клиент-сервер\Server\x64\Debug\Server.exe
